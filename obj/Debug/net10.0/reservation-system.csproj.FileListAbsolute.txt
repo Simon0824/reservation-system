@@ -134,14 +134,10 @@ C:\Users\Szymon\Desktop\projects\reservation-system\obj\Debug\net10.0\reservatio
 C:\Users\Szymon\Desktop\projects\reservation-system\obj\Debug\net10.0\reservation-system.csproj.CoreCompileInputs.cache
 C:\Users\Szymon\Desktop\projects\reservation-system\obj\Debug\net10.0\reservation-system.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\Szymon\Desktop\projects\reservation-system\obj\Debug\net10.0\reservation-system.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\Szymon\Desktop\projects\reservation-system\obj\Debug\net10.0\reservation-system.RazorAssemblyInfo.cache
-C:\Users\Szymon\Desktop\projects\reservation-system\obj\Debug\net10.0\reservation-system.RazorAssemblyInfo.cs
 C:\Users\Szymon\Desktop\projects\reservation-system\obj\Debug\net10.0\rjimswa.dswa.cache.json
 C:\Users\Szymon\Desktop\projects\reservation-system\obj\Debug\net10.0\rjsmrazor.dswa.cache.json
 C:\Users\Szymon\Desktop\projects\reservation-system\obj\Debug\net10.0\rjsmcshtml.dswa.cache.json
-C:\Users\Szymon\Desktop\projects\reservation-system\obj\Debug\net10.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
 C:\Users\Szymon\Desktop\projects\reservation-system\obj\Debug\net10.0\scopedcss\bundle\reservation-system.styles.css
-C:\Users\Szymon\Desktop\projects\reservation-system\obj\Debug\net10.0\scopedcss\projectbundle\reservation-system.bundle.scp.css
 C:\Users\Szymon\Desktop\projects\reservation-system\obj\Debug\net10.0\compressed\22qxvgqhvf-{0}-b9sayid5wm-b9sayid5wm.gz
 C:\Users\Szymon\Desktop\projects\reservation-system\obj\Debug\net10.0\compressed\7uh6puh167-{0}-61n19gt1b8-61n19gt1b8.gz
 C:\Users\Szymon\Desktop\projects\reservation-system\obj\Debug\net10.0\compressed\2ppjifbcrs-{0}-xtxxf3hu2r-xtxxf3hu2r.gz
@@ -204,8 +200,6 @@ C:\Users\Szymon\Desktop\projects\reservation-system\obj\Debug\net10.0\compressed
 C:\Users\Szymon\Desktop\projects\reservation-system\obj\Debug\net10.0\compressed\u7ve5jol50-{0}-muycvpuwrr-muycvpuwrr.gz
 C:\Users\Szymon\Desktop\projects\reservation-system\obj\Debug\net10.0\compressed\j4y0743a5s-{0}-87fc7y1x7t-87fc7y1x7t.gz
 C:\Users\Szymon\Desktop\projects\reservation-system\obj\Debug\net10.0\compressed\r1kvbelhsr-{0}-mlv21k5csn-mlv21k5csn.gz
-C:\Users\Szymon\Desktop\projects\reservation-system\obj\Debug\net10.0\compressed\e475bfiea3-{0}-o5baqt6kxh-o5baqt6kxh.gz
-C:\Users\Szymon\Desktop\projects\reservation-system\obj\Debug\net10.0\compressed\06cax87ozp-{0}-o5baqt6kxh-o5baqt6kxh.gz
 C:\Users\Szymon\Desktop\projects\reservation-system\obj\Debug\net10.0\staticwebassets.build.json
 C:\Users\Szymon\Desktop\projects\reservation-system\obj\Debug\net10.0\staticwebassets.build.json.cache
 C:\Users\Szymon\Desktop\projects\reservation-system\obj\Debug\net10.0\staticwebassets.development.json
@@ -217,3 +211,4 @@ C:\Users\Szymon\Desktop\projects\reservation-system\obj\Debug\net10.0\refint\res
 C:\Users\Szymon\Desktop\projects\reservation-system\obj\Debug\net10.0\reservation-system.pdb
 C:\Users\Szymon\Desktop\projects\reservation-system\obj\Debug\net10.0\reservation-system.genruntimeconfig.cache
 C:\Users\Szymon\Desktop\projects\reservation-system\obj\Debug\net10.0\ref\reservation-system.dll
+C:\Users\Szymon\Desktop\projects\reservation-system\obj\Debug\net10.0\reservation-system.sourcelink.json

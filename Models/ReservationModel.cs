@@ -4,8 +4,8 @@ namespace reservation_system.Models;
 
 public class ReservationModel
 {
-    int Id {get; set;}
-    string Namee {get; set;}awegewg
-    string LastName {get; set;}
-    DateOnly ReservationDate {get; set;}
+    public int Id {get; set;}
+    public string Name {get; set;}
+    public string LastName {get; set;}
+    public DateOnly ReservationDate {get; set;}
 }
