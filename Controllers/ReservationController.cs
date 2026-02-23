@@ -1,3 +1,4 @@
+using System.Xml.Schema;
 using Microsoft.AspNetCore.Mvc;
 using reservation_system.Data;
 using reservation_system.Dtos;
@@ -26,6 +27,13 @@ namespace reservation_system.Controllers
                LastName = newReservation.LastName,
                ReservationDate = newReservation.ReservationDate,
             };
+            foreach(var reser in _context.Reservation)
+            {
+                if(newReservation.ReservationDate == reser.ReservationDate)
+                {
+                    return BadRequest();
+                }
+            }
             _context.Reservation.Add(reservation);
             _context.SaveChanges();
             return CreatedAtAction(nameof(Get), newReservation);
