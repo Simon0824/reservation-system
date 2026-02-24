@@ -1,5 +1,6 @@
 using System.Xml.Schema;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using reservation_system.Data;
 using reservation_system.Dtos;
 using reservation_system.Models;
@@ -19,7 +20,7 @@ namespace reservation_system.Controllers
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public ActionResult<ReservationDto> Create(ReservationDto newReservation)
+        public async Task<ActionResult<ReservationDto>> Create(ReservationDto newReservation)
         {
             ReservationModel reservation = new()
             {
@@ -27,24 +28,22 @@ namespace reservation_system.Controllers
                LastName = newReservation.LastName,
                ReservationDate = newReservation.ReservationDate,
             };
-            foreach(var reser in _context.Reservation)
+            bool DateTaken = await _context.Reservation.AnyAsync(r => r.ReservationDate == newReservation.ReservationDate);
+            if(DateTaken)
             {
-                if(newReservation.ReservationDate == reser.ReservationDate)
-                {
-                    return BadRequest();
-                }
+                return BadRequest("That date is already taken!");
             }
             _context.Reservation.Add(reservation);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
             return CreatedAtAction(nameof(Get), newReservation);
         }
 
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public ActionResult Get()
+        public async Task<ActionResult> Get()
         {
-            var reservation = _context.Reservation.ToList();
+            var reservation = await _context.Reservation.AsNoTracking().ToListAsync();
             return Ok(reservation);
         }
     }
