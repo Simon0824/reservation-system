@@ -11,7 +11,7 @@ using reservation_system.Data;
 namespace reservation_system.Data.Migrations
 {
     [DbContext(typeof(ReservationContext))]
-    [Migration("20260225193413_InitialCreate")]
+    [Migration("20260225200204_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -217,14 +217,6 @@ namespace reservation_system.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
 
                     b.Property<DateOnly>("ReservationDate")
                         .HasColumnType("TEXT");

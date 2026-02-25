@@ -24,14 +24,12 @@ namespace reservation_system.Controllers
         {
             ReservationModel reservation = new()
             {
-               Name = newReservation.Name,
-               LastName = newReservation.LastName,
                ReservationDate = newReservation.ReservationDate,
             };
             bool DateTaken = await _context.Reservation.AnyAsync(r => r.ReservationDate == newReservation.ReservationDate);
             if(DateTaken)
             {
-                return BadRequest("That date is already taken!");
+                return BadRequest(new {Message = "That date is already taken!"});
             }
             _context.Reservation.Add(reservation);
             await _context.SaveChangesAsync();

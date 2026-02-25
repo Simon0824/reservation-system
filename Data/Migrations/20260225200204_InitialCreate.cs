@@ -56,8 +56,6 @@ namespace reservation_system.Data.Migrations
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Name = table.Column<string>(type: "TEXT", nullable: false),
-                    LastName = table.Column<string>(type: "TEXT", nullable: false),
                     ReservationDate = table.Column<DateOnly>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
