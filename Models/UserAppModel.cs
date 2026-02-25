@@ -9,4 +9,5 @@ public class UserAppModel : IdentityUser
     public string Password {get; set;}
     public string Name {get; set;}
     public string LastName {get; set;}
+    public List<ReservationModel> reservations {get; set;} = new();
 }

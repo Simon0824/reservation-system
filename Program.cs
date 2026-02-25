@@ -4,23 +4,23 @@ using reservation_system.Data;
 using reservation_system.Models;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-// Add services to the container.
-builder.Services.AddControllers();
 
 builder.Services.AddDbContext<ReservationContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("ConnString")));
 
 builder.Services.AddIdentityCore<UserAppModel>()
-                .AddRoles<IdentityUser>()
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ReservationContext>()
                 .AddApiEndpoints()
                 .AddDefaultTokenProviders();
 
-builder.Services.AddAuthentication(IdentityConstants.BearerScheme).AddBearerToken(IdentityConstants.BearerScheme);
+builder.Services.AddAuthentication(IdentityConstants.BearerScheme)
+                .AddBearerToken(IdentityConstants.BearerScheme);
 
 builder.Services.AddAuthorization();
+builder.Services.AddControllers();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 

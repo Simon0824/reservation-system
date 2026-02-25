@@ -212,3 +212,4 @@ C:\Users\Szymon\Desktop\projects\reservation-system\obj\Debug\net10.0\compressed
 C:\Users\Szymon\Desktop\projects\reservation-system\obj\Debug\net10.0\compressed\lta9sbtpmw-{0}-qlccset4i1-qlccset4i1.gz
 C:\Users\Szymon\Desktop\projects\reservation-system\obj\Debug\net10.0\compressed\a4w2312abz-{0}-xzw0cte36n-xzw0cte36n.gz
 C:\Users\Szymon\Desktop\projects\reservation-system\obj\Debug\net10.0\compressed\r1kvbelhsr-{0}-jfsiqqwiad-jfsiqqwiad.gz
+C:\Users\Szymon\Desktop\projects\reservation-system\bin\Debug\net10.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
