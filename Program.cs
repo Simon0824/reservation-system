@@ -8,8 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<ReservationContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("ConnString")));
 
-builder.Services.AddIdentityCore<UserAppModel>()
-                .AddRoles<IdentityRole>()
+builder.Services.AddIdentity<UserAppModel, IdentityRole>()
                 .AddEntityFrameworkStores<ReservationContext>()
                 .AddApiEndpoints()
                 .AddDefaultTokenProviders();
