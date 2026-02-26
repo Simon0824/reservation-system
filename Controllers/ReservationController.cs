@@ -1,4 +1,5 @@
 using System.Xml.Schema;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using reservation_system.Data;
@@ -8,6 +9,7 @@ namespace reservation_system.Controllers
 {
     [Route("api/reservation")]
     [ApiController]
+    [Authorize]
     public class ReservationController : ControllerBase
     {
         private readonly ReservationContext _context;

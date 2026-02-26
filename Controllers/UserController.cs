@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using reservation_system.Dtos;
 using reservation_system.Models;
 
@@ -33,6 +34,19 @@ namespace reservation_system.Controllers
                 return BadRequest(result.Errors);
             }
             return Created();
+        }
+
+        [HttpGet("accounts")]
+        public async Task<ActionResult> GetAccounts()
+        {
+            var accounts = await _userManager.Users.Select(u => new
+            {
+                u.Id,
+                u.Email
+            })
+            .AsNoTracking()
+            .ToListAsync();
+            return Ok(accounts);
         }
     }
 }
