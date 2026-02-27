@@ -35,7 +35,7 @@ namespace reservation_system.Controllers
             {
                 return BadRequest(result.Errors);
             }
-            return Created();
+            return Ok("Account created!");
         }
 
         [HttpPost("login")]
@@ -44,7 +44,7 @@ namespace reservation_system.Controllers
             var user  = await _userManager.FindByEmailAsync(dto.Email);
             if(user == null)
             {
-                return BadRequest();
+                return BadRequest("Wrong email or password!");
             }
             var passwordValid  = await _signIn.CheckPasswordSignInAsync(
                 user,
@@ -53,9 +53,9 @@ namespace reservation_system.Controllers
                 );
             if(!passwordValid.Succeeded)
             {
-                return BadRequest();
+                return BadRequest("Wrong email or password!");
             }
-            return Ok(dto);
+            return Ok(new {Message = "You logged properly!"});
         }
 
         [HttpGet("accounts")]

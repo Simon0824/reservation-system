@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using reservation_system.Data;
+using reservation_system.Dtos;
 using reservation_system.Models;
 namespace reservation_system.Controllers
 {
@@ -21,7 +22,7 @@ namespace reservation_system.Controllers
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<ReservationModel>> Create(ReservationModel newReservation)
+        public async Task<ActionResult<ReservationDto>> Create(ReservationDto newReservation)
         {
             ReservationModel reservation = new()
             {

@@ -11,7 +11,7 @@ using reservation_system.Data;
 namespace reservation_system.Data.Migrations
 {
     [DbContext(typeof(ReservationContext))]
-    [Migration("20260227114711_InitialCreate")]
+    [Migration("20260227120845_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />

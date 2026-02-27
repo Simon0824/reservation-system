@@ -5,5 +5,5 @@ namespace reservation_system.Dtos;
 
 public record class ReservationDto(
     [Required]
-    DateOnly ReleaseDate
+    DateOnly ReservationDate
 );
