@@ -12,9 +12,11 @@ namespace reservation_system.Controllers
     public class UserController : ControllerBase
     {
         public readonly UserManager<UserAppModel> _userManager;
-        public UserController(UserManager<UserAppModel> userManager)
+        public readonly SignInManager<UserAppModel> _signIn;
+        public UserController(UserManager<UserAppModel> userManager, SignInManager<UserAppModel> signIn)
         {
             _userManager = userManager;
+            _signIn = signIn;
         }
 
         [HttpPost("register")]
@@ -34,6 +36,26 @@ namespace reservation_system.Controllers
                 return BadRequest(result.Errors);
             }
             return Created();
+        }
+
+        [HttpPost("login")]
+        public async Task <ActionResult> LoginUser([FromBody] LoginDto dto)
+        {
+            var user  = await _userManager.FindByEmailAsync(dto.Email);
+            if(user == null)
+            {
+                return BadRequest();
+            }
+            var passwordValid  = await _signIn.CheckPasswordSignInAsync(
+                user,
+                dto.Password,
+                dto.rememberMe
+                );
+            if(!passwordValid.Succeeded)
+            {
+                return BadRequest();
+            }
+            return Ok(dto);
         }
 
         [HttpGet("accounts")]
