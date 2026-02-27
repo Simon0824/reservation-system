@@ -25,8 +25,8 @@ namespace reservation_system.Controllers
               Name = dto.Name,
               LastName = dto.LastName,
               Email = dto.Email,
-              Password = dto.Password,
-              UserName = dto.Email  
+              UserName = dto.Email,
+              NormalizedEmail = _userManager.NormalizeEmail(dto.Email)  
             };
             var result = await _userManager.CreateAsync(user, dto.Password);
             if(!result.Succeeded)
@@ -42,7 +42,9 @@ namespace reservation_system.Controllers
             var accounts = await _userManager.Users.Select(u => new
             {
                 u.Id,
-                u.Email
+                u.Email,
+                u.Name,
+                u.LastName
             })
             .AsNoTracking()
             .ToListAsync();

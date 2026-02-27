@@ -3,15 +3,12 @@ using System.ComponentModel.DataAnnotations;
 
 namespace reservation_system.Dtos;
 
-public record class RegisterDto(
+public record class LoginDto(
     [Required]
     [EmailAddress]
     string Email,
     [Required]
     [DataType(DataType.Password)]
     string Password,
-    [Required]
-    string Name,
-    [Required]
-    string LastName
+    bool rememberMe
 );
