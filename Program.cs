@@ -11,12 +11,12 @@ builder.Services.AddDbContext<ReservationContext>(options =>
 builder.Services.AddIdentity<UserAppModel, IdentityRole>()
                 .AddEntityFrameworkStores<ReservationContext>()
                 .AddApiEndpoints()
-                .AddDefaultTokenProviders();
-
+                .AddDefaultTokenProviders()
+                .AddTokenProvider<DataProtectorTokenProvider<UserAppModel>>(IdentityConstants.BearerScheme);
 builder.Services.AddAuthentication(IdentityConstants.BearerScheme)
                 .AddBearerToken(IdentityConstants.BearerScheme);
 
-builder.Services.AddAuthorization();
+
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -30,6 +30,9 @@ if(app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.UseHttpsRedirection();
 app.UseRouting();

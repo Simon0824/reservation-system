@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualBasic;
 using reservation_system.Dtos;
 using reservation_system.Models;
 
@@ -55,7 +56,8 @@ namespace reservation_system.Controllers
             {
                 return BadRequest("Wrong email or password!");
             }
-            return Ok(new {Message = "You logged properly!"});
+            var token = await _userManager.GenerateUserTokenAsync(user, IdentityConstants.BearerScheme, "BearerToken");
+            return Ok(new {Message = "You logged properly!", Token = token});
         }
 
         [HttpGet("accounts")]
