@@ -1,4 +1,5 @@
 using System.Xml.Schema;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -8,16 +9,18 @@ using reservation_system.Dtos;
 using reservation_system.Models;
 namespace reservation_system.Controllers
 {
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [Route("api/reservation")]
     [ApiController]
-    [Authorize]
     public class ReservationController : ControllerBase
     {
         private readonly ReservationContext _context;
+        private readonly UserManager<UserAppModel> _userManager;
 
-        public ReservationController(ReservationContext context)
+        public ReservationController(ReservationContext context, UserManager<UserAppModel> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         [HttpPost]
@@ -25,6 +28,7 @@ namespace reservation_system.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<ReservationDto>> Create(ReservationDto newReservation)
         {
+            var user = await _userManager.GetUserAsync(User);
             ReservationModel reservation = new()
             {
                ReservationDate = newReservation.ReservationDate,
@@ -36,6 +40,8 @@ namespace reservation_system.Controllers
             }
             _context.Reservation.Add(reservation);
             await _context.SaveChangesAsync();
+            user.reservations.Add(reservation);
+            await _userManager.UpdateAsync(user);
             return CreatedAtAction(nameof(Get), newReservation);
         }
 
