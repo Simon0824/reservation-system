@@ -52,7 +52,7 @@ builder.Services.AddSwaggerGen(c =>
     {
         Type = SecuritySchemeType.Http,
         Scheme = "bearer",
-        Description = "Wpisz sam token JWT"
+        Description = "Type only JWT token"
     });
 
     
