@@ -18,7 +18,7 @@ Handles database access through a DbContext and manages schema changes using mig
 ## API Preview
 ### Swagger UI
 Overview of all available endpoints.
-<img src="https://github.com/Simon0824/reservation-system/blob/3df63f49116a072e1dadb8e8c49fe6e1aed48783/Screen1.pn" width="1200" height="1000"/>
+<img src="https://github.com/Simon0824/reservation-system/blob/3df63f49116a072e1dadb8e8c49fe6e1aed48783/Screen1.png" width="1200" height="1000"/>
 
 ### Login to Account (POST)
 User authentication endpoint returning JWT token.
