@@ -1,9 +1,7 @@
-using System;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Identity;
 
 namespace reservation_system.Models;
-
 public class UserAppModel : IdentityUser
 {
     [Required]

@@ -1,9 +1,6 @@
-    using System.Security.Claims;
-    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
-    using Microsoft.VisualBasic;
     using reservation_system.Dtos;
     using reservation_system.Models;
     using Microsoft.IdentityModel.Tokens;
