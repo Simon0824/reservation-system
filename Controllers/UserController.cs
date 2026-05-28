@@ -84,13 +84,13 @@
                    { JwtRegisteredClaimNames.Email, user.Email ?? "" },
                 };
 
-                var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration.GetValue<string>("CreateToken:Token")!));
+                var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration.GetValue<string>("CreatingToken:Token")!));
 
                 var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512);
                 var tokenDescriptor = new SecurityTokenDescriptor
                 {
-                Issuer = configuration["CreateToken:Issuer"],
-                Audience = configuration["CreateToken:Audience"],
+                Issuer = configuration["CreatingToken:Issuer"],
+                Audience = configuration["CreatingToken:Audience"],
                 Claims = claims,
                 Expires = DateTime.UtcNow.AddDays(1),
                 SigningCredentials = creds
