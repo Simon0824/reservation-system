@@ -1,5 +1,5 @@
 # Reservation-system
-Reservation System is a backend REST API for managing date reservations, 
+Reservation System is a backend REST API for booking date reservations with a user registration possibility, 
 built with ASP.NET Core and .NET 10.
 
 ## Used technologies and frameworks
