@@ -1,6 +1,6 @@
 # Reservation-system
-Reservation system is a simple project that demonstrates how a reservation app could work.
-This is my first WEB API program created to learn backend development
+Reservation System is a backend REST API for managing date reservations, 
+built with ASP.NET Core and .NET 10.
 
 ## Used technologies and frameworks
 ### JWT(JSON Web Token)
