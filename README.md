@@ -44,3 +44,14 @@ Request for checking all created users and which dates are assigned to them.
 - Access protected endpoints using authorization
 - Swagger UI with JWT authentication support
 
+## How to run
+1. Clone the repository
+   git clone https://github.com/Simon0824/reservation-system
+2. Add JWT secret to user-secrets:
+   - dotnet user-secrets set "CreatingToken:Token" "Your_Secret",
+   - dotnet user-secrets set "CreatingToken:Issuer" "Your_Issuer",
+   - dotnet user-secrets set "CreatingToken:Audience" "Your_Audience",
+3. Run the project:
+   dotnet run
+4. Open Swagger UI:
+   http://localhost:{port}/swagger/index.html
