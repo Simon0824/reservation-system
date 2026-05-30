@@ -6,10 +6,10 @@ public class UserAppModel : IdentityUser
 {
     [Required]
     [EmailAddress]
-    public override string Email {get; set;}
+    public override string? Email {get; set;}
     [Required]
-    public string Name {get; set;}
+    public required string Name {get; set;}
     [Required]
-    public string LastName {get; set;}
+    public required string LastName {get; set;}
     public List<ReservationModel> reservations {get; set;} = new();
 }

@@ -2,8 +2,10 @@
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
     using reservation_system.Dtos;
-    using reservation_system.Models;
-    using Microsoft.IdentityModel.Tokens;
+using reservation_system.Models;
+using reservation_system.Services;
+using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
     using System.Text;
     using Microsoft.IdentityModel.JsonWebTokens;
 
@@ -12,12 +14,13 @@
         [Route("api/auth")]
         [ApiController]
         public class UserController(
-        IConfiguration configuration,
+        ITokenService tokenService,
         UserManager<UserAppModel> userManager,
         SignInManager<UserAppModel> signIn) : ControllerBase
         {
-            public readonly UserManager<UserAppModel> _userManager = userManager;
-            public readonly SignInManager<UserAppModel> _signIn = signIn;
+            private readonly UserManager<UserAppModel> _userManager = userManager;
+            private readonly SignInManager<UserAppModel> _signIn = signIn;
+            private readonly ITokenService _tokenService = tokenService;
 
             [HttpPost("register")]
             public async Task<IActionResult> CreateUser([FromBody]RegisterDto dto)
@@ -55,7 +58,7 @@
                 {
                     return BadRequest("Wrong email or password!");
                 }
-                var token = CreateToken(user);
+                var token = _tokenService.CreateToken(user);
                 return Ok(new {Message = "You logged properly!", Token = token});
             }
 
@@ -73,30 +76,6 @@
                 .AsNoTracking()
                 .ToListAsync();
                 return Ok(accounts);
-            }
-
-            private string CreateToken(UserAppModel user)
-            {
-                var claims = new Dictionary<string, object>
-                {
-                   { JwtRegisteredClaimNames.Sub, user.Id },
-                   { JwtRegisteredClaimNames.UniqueName, user.UserName },
-                   { JwtRegisteredClaimNames.Email, user.Email ?? "" },
-                };
-
-                var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration.GetValue<string>("CreatingToken:Token")!));
-
-                var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512);
-                var tokenDescriptor = new SecurityTokenDescriptor
-                {
-                Issuer = configuration["CreatingToken:Issuer"],
-                Audience = configuration["CreatingToken:Audience"],
-                Claims = claims,
-                Expires = DateTime.UtcNow.AddDays(1),
-                SigningCredentials = creds
-                };
-
-                return new JsonWebTokenHandler().CreateToken(tokenDescriptor);
             }
         }
     }

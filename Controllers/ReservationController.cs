@@ -28,6 +28,10 @@ namespace reservation_system.Controllers
         public async Task<ActionResult<ReservationDto>> Create(ReservationDto newReservation)
         {
             var user = await _userManager.GetUserAsync(User);
+            if(user == null)
+            {
+                return BadRequest(new {Message = "You're not logged"});
+            }
             ReservationModel reservation = new()
             {
                ReservationDate = newReservation.ReservationDate,
@@ -41,7 +45,7 @@ namespace reservation_system.Controllers
             await _context.SaveChangesAsync();
             user.reservations.Add(reservation);
             await _userManager.UpdateAsync(user);
-            return CreatedAtAction(nameof(Get), newReservation);
+            return CreatedAtAction(nameof(Get), reservation);
         }
 
         [HttpGet]
