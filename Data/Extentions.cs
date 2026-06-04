@@ -1,8 +1,6 @@
-using System;
-using System.Xml.Schema;
 using Microsoft.EntityFrameworkCore;
-namespace reservation_system.Data;
 
+namespace reservation_system.Data;
 public static class Extentions
 {
     public static void MigrateDb(this WebApplication app)

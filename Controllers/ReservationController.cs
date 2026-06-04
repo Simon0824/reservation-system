@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using reservation_system.Data;
 using reservation_system.Dtos;
 using reservation_system.Models;
+using reservation_system.Services;
 namespace reservation_system.Controllers
 {
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
@@ -15,37 +16,31 @@ namespace reservation_system.Controllers
     {
         private readonly ReservationContext _context;
         private readonly UserManager<UserAppModel> _userManager;
+        private readonly IReservationService _reservService;
 
-        public ReservationController(ReservationContext context, UserManager<UserAppModel> userManager)
+        public ReservationController(ReservationContext context, UserManager<UserAppModel> userManager, IReservationService reservService)
         {
             _context = context;
             _userManager = userManager;
+            _reservService = reservService;
         }
 
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<ReservationDto>> Create(ReservationDto newReservation)
+        public async Task<ActionResult<ReservationModel>> Create([FromBody]ReservationDto newReservation)
         {
             var user = await _userManager.GetUserAsync(User);
-            if(user == null)
-            {
-                return BadRequest(new {Message = "You're not logged"});
-            }
-            ReservationModel reservation = new()
-            {
-               ReservationDate = newReservation.ReservationDate,
-            };
-            bool DateTaken = await _context.Reservation.AnyAsync(r => r.ReservationDate == newReservation.ReservationDate);
-            if(DateTaken)
-            {
-                return BadRequest(new {Message = "That date is already taken!"});
-            }
-            _context.Reservation.Add(reservation);
-            await _context.SaveChangesAsync();
-            user.reservations.Add(reservation);
-            await _userManager.UpdateAsync(user);
-            return CreatedAtAction(nameof(Get), reservation);
+            if (user == null)
+                {
+                    return Unauthorized(new { Message = "You are not authorized" });
+                }
+            var result = await _reservService.CreateNewReservation(newReservation, user);
+            if(result == null)
+                {
+                    return BadRequest(new { Message = "Date is already taken!" });
+                }
+            return CreatedAtAction(nameof(Get), result);
         }
 
         [HttpGet]

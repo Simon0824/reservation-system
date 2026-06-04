@@ -63,6 +63,7 @@ c.AddSecurityRequirement(document => new OpenApiSecurityRequirement
 });
 
 builder.Services.AddScoped<ITokenService, TokenService>();
+builder.Services.AddScoped<IReservationService, ReservationService>();
 
 var app = builder.Build();
 
