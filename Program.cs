@@ -5,10 +5,21 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi;
 using reservation_system.Data;
+using reservation_system.Exceptions;
 using reservation_system.Models;
 using reservation_system.Services;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddProblemDetails( configure =>
+{
+   configure.CustomizeProblemDetails = context =>
+   {
+       context.ProblemDetails.Extensions.TryAdd("requestId", context.HttpContext.TraceIdentifier);
+   };
+});
+
+builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 
 builder.Services.AddDbContext<ReservationContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("ConnString")));
@@ -67,6 +78,7 @@ builder.Services.AddScoped<IReservationService, ReservationService>();
 
 var app = builder.Build();
 
+
 app.MigrateDb();
 
 if(app.Environment.IsDevelopment())
@@ -74,6 +86,8 @@ if(app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseExceptionHandler();
 
 app.UseHttpsRedirection();
 
