@@ -35,11 +35,13 @@ namespace reservation_system.Controllers
                 {
                     return Unauthorized(new { Message = "You are not authorized" });
                 }
-            var result = await _reservService.CreateNewReservation(newReservation, user);
+            var result = await _reservService.CreateNewReservation(newReservation);
             if(result == null)
                 {
                     return BadRequest(new { Message = "Date is already taken!" });
                 }
+            user.reservations.Add(result);
+            await _userManager.UpdateAsync(user);
             return CreatedAtAction(nameof(Get), result);
         }
 

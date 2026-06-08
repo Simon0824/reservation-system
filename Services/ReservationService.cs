@@ -9,15 +9,13 @@ namespace reservation_system.Services
     public class ReservationService : IReservationService
     {
         private readonly ReservationContext _context;
-        private readonly UserManager<UserAppModel> _userManager;
 
-        public ReservationService(ReservationContext context, UserManager<UserAppModel> userManager)
+        public ReservationService(ReservationContext context)
         {
             _context = context;
-            _userManager = userManager;
         }
 
-        public async Task<ReservationModel> CreateNewReservation(ReservationDto newReservation, UserAppModel User)
+        public async Task<ReservationModel> CreateNewReservation(ReservationDto newReservation)
         {
             bool DateTaken = await _context.Reservation.AnyAsync(r => r.ReservationDate == newReservation.ReservationDate);
             if (DateTaken)
@@ -30,14 +28,12 @@ namespace reservation_system.Services
             };
             _context.Reservation.Add(reservation);
             await _context.SaveChangesAsync();
-            User.reservations.Add(reservation);
-            await _userManager.UpdateAsync(User);
             return reservation;
         }
     }
 
     public interface IReservationService
     {
-        Task<ReservationModel> CreateNewReservation(ReservationDto newReserv, UserAppModel User);
+        Task<ReservationModel> CreateNewReservation(ReservationDto newReserv);
     }
 }

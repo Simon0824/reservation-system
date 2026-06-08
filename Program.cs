@@ -75,7 +75,7 @@ c.AddSecurityRequirement(document => new OpenApiSecurityRequirement
 
 builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddScoped<IReservationService, ReservationService>();
-
+builder.Services.AddScoped<IUserService, UserService>();
 var app = builder.Build();
 
 
@@ -93,8 +93,6 @@ app.UseHttpsRedirection();
 
 app.UseAuthentication();
 app.UseAuthorization();
-
-app.MapStaticAssets();
 
 app.MapControllers();
 

@@ -27,7 +27,6 @@ internal sealed class GlobalExceptionHandler(IProblemDetailsService problemDetai
                     Title = "An error occured",
                     Detail = ex.Message
                 }
-            
             });       
     }
 }
