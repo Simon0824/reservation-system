@@ -14,13 +14,11 @@ namespace reservation_system.Controllers
     [ApiController]
     public class ReservationController : ControllerBase
     {
-        private readonly ReservationContext _context;
         private readonly UserManager<UserAppModel> _userManager;
         private readonly IReservationService _reservService;
 
-        public ReservationController(ReservationContext context, UserManager<UserAppModel> userManager, IReservationService reservService)
+        public ReservationController(UserManager<UserAppModel> userManager, IReservationService reservService)
         {
-            _context = context;
             _userManager = userManager;
             _reservService = reservService;
         }
@@ -36,10 +34,6 @@ namespace reservation_system.Controllers
                     return Unauthorized(new { Message = "You are not authorized" });
                 }
             var result = await _reservService.CreateNewReservation(newReservation);
-            if(result == null)
-                {
-                    return BadRequest(new { Message = "Date is already taken!" });
-                }
             user.reservations.Add(result);
             await _userManager.UpdateAsync(user);
             return CreatedAtAction(nameof(Get), result);
@@ -50,7 +44,7 @@ namespace reservation_system.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult> Get()
         {
-            var reservation = await _context.Reservation.AsNoTracking().ToListAsync();
+            var reservation = await _reservService.GetAllBookedReservations();
             return Ok(reservation);
         }
     }

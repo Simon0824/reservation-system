@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore;
 using reservation_system.Data;
 using reservation_system.Dtos;
 using reservation_system.Models;
+using reservation_system.Services;
 namespace reservation_system.Services
 {
-
     public class ReservationService : IReservationService
     {
         private readonly ReservationContext _context;
@@ -20,7 +20,7 @@ namespace reservation_system.Services
             bool DateTaken = await _context.Reservation.AnyAsync(r => r.ReservationDate == newReservation.ReservationDate);
             if (DateTaken)
             {
-                return null;
+                throw new ApplicationException("Date is already taken!");
             }
             ReservationModel reservation = new()
             {
@@ -30,10 +30,11 @@ namespace reservation_system.Services
             await _context.SaveChangesAsync();
             return reservation;
         }
-    }
 
-    public interface IReservationService
-    {
-        Task<ReservationModel> CreateNewReservation(ReservationDto newReserv);
+        public async Task<List<ReservationModel>> GetAllBookedReservations()
+        {
+            var reservations = await _context.Reservation.AsNoTracking().ToListAsync();
+            return reservations;
+        }
     }
 }

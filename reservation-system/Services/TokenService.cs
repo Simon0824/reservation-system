@@ -7,11 +7,6 @@ using reservation_system.Models;
 
 namespace reservation_system.Services
 {
-    public interface ITokenService
-    {
-        string CreateToken(UserAppModel user);
-    }
-
     public class TokenService(IConfiguration configuration) : ITokenService
     {
         public string CreateToken(UserAppModel user)

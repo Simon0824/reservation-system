@@ -26,10 +26,8 @@ public class ReservationTest
         var _reservationService = new ReservationService(context);
         context.Reservation.Add(new ReservationModel { ReservationDate = takenDate});
         await context.SaveChangesAsync();
-        //Act
-        var result = await _reservationService.CreateNewReservation(dto);
-        //Assert
-        Assert.Null(result);
+        //Assert & Act
+        await Assert.ThrowsAsync<ApplicationException>(() => _reservationService.CreateNewReservation(dto));
     }
 
     [Fact]

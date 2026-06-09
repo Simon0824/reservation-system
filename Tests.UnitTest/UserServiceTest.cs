@@ -40,8 +40,6 @@ public class UserServiceTest
            Name = registerDto.Name, 
            LastName = registerDto.LastName
         };
-
-        _userMan.FindByEmailAsync(existingUser.Email).Returns(existingUser);
         _userMan.CreateAsync(Arg.Any<UserAppModel>(), Arg.Any<string>())
              .Returns(IdentityResult.Failed(new IdentityError { Description = "User already exists" }));
 

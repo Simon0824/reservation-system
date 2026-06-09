@@ -6,18 +6,8 @@ using reservation_system.Responses;
 
 namespace reservation_system.Services
 {
-    public interface IUserService
-    {
-        Task<object> GetAccountsAsync();
-        Task<UserServiceResponses> UserLogin(LoginDto dto);
-        Task<IdentityResult> UserRegister(RegisterDto dto);
-    }
-
     public class UserService(UserManager<UserAppModel> userMan, SignInManager<UserAppModel> signMan, ITokenService tokenService) : IUserService
     {
-        private readonly UserManager<UserAppModel> _userMan = userMan;
-        private readonly SignInManager<UserAppModel> _signMan = signMan;
-        private readonly ITokenService _tokenService = tokenService;
         public async Task<IdentityResult> UserRegister(RegisterDto dto)
         {
             UserAppModel user = new()
@@ -26,20 +16,20 @@ namespace reservation_system.Services
                 LastName = dto.LastName,
                 Email = dto.Email,
                 UserName = dto.Email,
-                NormalizedEmail = _userMan.NormalizeEmail(dto.Email)
+                NormalizedEmail = userMan.NormalizeEmail(dto.Email)
             };
-            var result = await _userMan.CreateAsync(user, dto.Password);
+            var result = await userMan.CreateAsync(user, dto.Password);
             return result;
         }
 
         public async Task<UserServiceResponses> UserLogin(LoginDto dto)
         {
-            var user = await _userMan.FindByEmailAsync(dto.Email);
+            var user = await userMan.FindByEmailAsync(dto.Email);
             if (user == null)
             {
                 return new UserServiceResponses { Succeeded = false, Error = "Wrong email or password!" };
             }
-            var passwordValid = await _signMan.CheckPasswordSignInAsync(
+            var passwordValid = await signMan.CheckPasswordSignInAsync(
             user,
             dto.Password,
             dto.rememberMe
@@ -48,13 +38,13 @@ namespace reservation_system.Services
             {
                 return new UserServiceResponses { Succeeded = false, Error = "Wrong email or password!" };
             }
-            var token = _tokenService.CreateToken(user);
+            var token = tokenService.CreateToken(user);
             return new UserServiceResponses { Succeeded = true, Token = token };
         }
 
         public async Task<object> GetAccountsAsync()
         {
-            return await _userMan.Users
+            return await userMan.Users
             .Select(u => new
             {
                 u.Id,

@@ -1,13 +1,17 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using reservation_system.Dtos;
 using reservation_system.Services;
 
 namespace reservation_system.Controllers
 {
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [Route("api/auth")]
     [ApiController]
     public class UserController(IUserService userService) : ControllerBase
     {
+        [AllowAnonymous]
         [HttpPost("register")]
         public async Task<IActionResult> CreateUser([FromBody]RegisterDto dto)
         {
@@ -19,6 +23,7 @@ namespace reservation_system.Controllers
             return Ok("Account created!");
         }
 
+        [AllowAnonymous]
         [HttpPost("login")]
         public async Task <ActionResult> LoginUser([FromBody] LoginDto dto)
         {
