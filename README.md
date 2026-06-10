@@ -50,6 +50,13 @@ Request for checking all created users and which dates are assigned to them.
 - Access protected endpoints using authorization
 - Swagger UI with JWT authentication support
 
+## Unit Tests (xUnit with NSubstitute mock)
+- Reservation tests with mocked database
+- User registration tests with check if user is already registered
+- Mocking SingInManager, UserManager, Token and User services
+- User login tests with password and email check
+- User login happy path testing
+
 ## How to run
 1. Clone the repository
    git clone https://github.com/Simon0824/reservation-system
