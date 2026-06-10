@@ -1,3 +1,4 @@
+![CI](https://github.com/Simon0824/reservation-system/actions/workflows/system_workflow.yml/badge.svg)
 # Reservation-system
 Reservation System is a backend REST API for booking date reservations with a user registration possibility, 
 built with ASP.NET Core and .NET 10.
