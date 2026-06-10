@@ -74,9 +74,7 @@ Request for checking all created users and which dates are assigned to them.
 2. Add JWT secret to user-secrets:
    ```bash
    dotnet user-secrets set "CreatingToken:Token" "Your_Secret"
-   ```bash
    dotnet user-secrets set "CreatingToken:Issuer" "Your_Issuer"
-   ```bash
    dotnet user-secrets set "CreatingToken:Audience" "Your_Audience"
 3. Run the project:
    ```bash
