@@ -19,30 +19,35 @@ Handles database access through a DbContext and manages schema changes using mig
 ## API Preview
 ### Swagger UI
 Overview of all available endpoints.
+
 <img src="https://github.com/Simon0824/reservation-system/blob/3df63f49116a072e1dadb8e8c49fe6e1aed48783/Screen1.png" width="700" height="500"/>
 
 
 
 ### User Login (POST)
 User authentication endpoint returning JWT token.
+
 <img src="https://github.com/Simon0824/reservation-system/blob/3df63f49116a072e1dadb8e8c49fe6e1aed48783/Screen2.png" width="700" height="500"/>
 
 
 
 ### Entering JWT Token for authorization
 Example of accessing secured endpoint using Bearer token.
+
 <img src="https://github.com/Simon0824/reservation-system/blob/3df63f49116a072e1dadb8e8c49fe6e1aed48783/Screen3.png" width="700" height="500"/>
 
 
 
 ### Create Reservation (POST)
 Example request for creating a reservation.
+
 <img src="https://github.com/Simon0824/reservation-system/blob/3df63f49116a072e1dadb8e8c49fe6e1aed48783/Screen4.png" width="700" height="500"/>
 
 
 
 ### Get All Users with Reservations (GET)
 Request for checking all created users and which dates are assigned to them.
+
 <img src="https://github.com/Simon0824/reservation-system/blob/3df63f49116a072e1dadb8e8c49fe6e1aed48783/Screen5.png" width="700" height="500"/>
 
 
