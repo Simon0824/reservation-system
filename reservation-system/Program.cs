@@ -42,12 +42,6 @@ builder.Services.AddDbContext<ReservationContext>(options =>
     .AddEntityFrameworkStores<ReservationContext>()
     .AddDefaultTokenProviders();
 
-
-builder.Configuration["CreatingToken:Token"] = "GW23825thghegwh-t42-_@_Q-344h4hsgvsipuepir2w3021rgh@#Qwdsfgws1)*YG2300ds)*GB023yr0fwq0r8g3";
-builder.Configuration["CreatingToken:Issuer"] = "MyApp";
-builder.Configuration["CreatingToken:Audience"] = "MyAudience";
-
-
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {
@@ -64,7 +58,6 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                     };
                 }
                 );
-
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
