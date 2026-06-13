@@ -6,8 +6,6 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>reservation_system</RootNamespace>
     <UserSecretsId>a89418f2-ec51-4e43-aa6c-96eef706b0cb</UserSecretsId>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
   </PropertyGroup>
 
   <ItemGroup>

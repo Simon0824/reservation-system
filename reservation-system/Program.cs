@@ -11,10 +11,7 @@ using reservation_system.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-if (builder.Environment.IsDevelopment())
-{
-    builder.Configuration.AddUserSecrets<Program>();
-}
+Console.WriteLine($"DEBUG TOKEN: {builder.Configuration["CreatingToken:Token"]}");
 
 builder.Services.AddProblemDetails( configure =>
 {
@@ -83,6 +80,7 @@ c.AddSecurityRequirement(document => new OpenApiSecurityRequirement
 builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddScoped<IReservationService, ReservationService>();
 builder.Services.AddScoped<IUserService, UserService>();
+
 var app = builder.Build();
 
 
@@ -97,8 +95,9 @@ else
 {
     app.UseHttpsRedirection();
 }
-app.UseExceptionHandler();
 
+
+app.UseExceptionHandler();
 
 app.UseAuthentication();
 app.UseAuthorization();
