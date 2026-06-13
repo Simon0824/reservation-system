@@ -71,14 +71,17 @@ Request for checking all created users and which dates are assigned to them.
 1. Clone the repository
    ```bash
    git clone https://github.com/Simon0824/reservation-system
+   
 2. Add JWT secret to user-secrets:
    ```bash
    dotnet user-secrets set "CreatingToken:Token" "Your_Secret"
    dotnet user-secrets set "CreatingToken:Issuer" "Your_Issuer"
    dotnet user-secrets set "CreatingToken:Audience" "Your_Audience"
+   
 3. Run the project:
    ```bash
    dotnet run
+   
 4. Open Swagger UI:
    http://localhost:{port}/swagger/index.html
    
