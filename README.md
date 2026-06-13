@@ -10,7 +10,7 @@ Token validation using TokenValidationParameters and integrated with Swagger for
 
 ### ASP.NET Identity 
 Used for user registration and login functionality, managed with UserManager and SignInManager.
-Responsible for hashing user passwords and storing in SQlite database
+Responsible for hashing user passwords and storing in SQLite database
 
 ### Entity Framework Core(EF Core)
 Used as an ORM to communicate with a SQLite database.  
@@ -63,7 +63,7 @@ Request for checking all created users and which dates are assigned to them.
 ## Unit Tests (xUnit with NSubstitute mock)
 - Reservation tests with mocked database
 - User registration tests with check if user is already registered
-- Mocking SingInManager, UserManager, Token and User services
+- Mocking SignInManager, UserManager, Token and User services
 - User login tests with password and email check
 - User login happy path testing
 
