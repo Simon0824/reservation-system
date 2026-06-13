@@ -17,9 +17,8 @@ namespace reservation_system.Services
                 Email = dto.Email,
                 UserName = dto.Email,
                 NormalizedEmail = userMan.NormalizeEmail(dto.Email)
-            };
-            var result = await userMan.CreateAsync(user, dto.Password);
-            return result;
+            }; 
+            return await userMan.CreateAsync(user, dto.Password);
         }
 
         public async Task<UserServiceResponses> UserLogin(LoginDto dto)

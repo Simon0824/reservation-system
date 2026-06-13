@@ -99,7 +99,7 @@ public class UserServiceTest
         Assert.NotNull(loginResult.Error);
     }
 
-        [Fact]
+    [Fact]
     public async Task UserLogin_Should_ReturnSuceeded_WhenLoginIsValid()
     {
         //Arrange

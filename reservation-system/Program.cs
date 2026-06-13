@@ -11,6 +11,11 @@ using reservation_system.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
+if (builder.Environment.IsDevelopment())
+{
+    builder.Configuration.AddUserSecrets<Program>();
+}
+
 builder.Services.AddProblemDetails( configure =>
 {
    configure.CustomizeProblemDetails = context =>
@@ -24,7 +29,7 @@ builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 builder.Services.AddDbContext<ReservationContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("ConnString")));
 
-    builder.Services.AddIdentity<UserAppModel, IdentityRole>(options =>
+    builder.Services.AddIdentityCore<UserAppModel>(options =>
 {
     options.Password.RequireDigit = true;
     options.Password.RequiredLength = 8;
@@ -32,8 +37,17 @@ builder.Services.AddDbContext<ReservationContext>(options =>
     options.Password.RequireUppercase = true;
     options.Password.RequireLowercase = true;
 })
+    .AddRoles<IdentityRole>()
+    .AddSignInManager()
     .AddEntityFrameworkStores<ReservationContext>()
     .AddDefaultTokenProviders();
+
+
+builder.Configuration["CreatingToken:Token"] = "GW23825thghegwh-t42-_@_Q-344h4hsgvsipuepir2w3021rgh@#Qwdsfgws1)*YG2300ds)*GB023yr0fwq0r8g3";
+builder.Configuration["CreatingToken:Issuer"] = "MyApp";
+builder.Configuration["CreatingToken:Audience"] = "MyAudience";
+
+
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {
@@ -86,10 +100,12 @@ if(app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+else
+{
+    app.UseHttpsRedirection();
+}
 app.UseExceptionHandler();
 
-app.UseHttpsRedirection();
 
 app.UseAuthentication();
 app.UseAuthorization();
