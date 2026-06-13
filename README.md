@@ -81,6 +81,7 @@ Request for checking all created users and which dates are assigned to them.
    dotnet run
 4. Open Swagger UI:
    http://localhost:{port}/swagger/index.html
+   
 5. Run the unit tests:
    ```bash
    dotnet test
