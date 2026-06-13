@@ -10,7 +10,7 @@ Token validation using TokenValidationParameters and integrated with Swagger for
 
 ### ASP.NET Identity 
 Used for user registration and login functionality, managed with UserManager and SignInManager.
-Responsible for hashing user passwords and storing in SQlite database
+Responsible for hashing user passwords and storing in SQLite database
 
 ### Entity Framework Core(EF Core)
 Used as an ORM to communicate with a SQLite database.  
@@ -19,27 +19,37 @@ Handles database access through a DbContext and manages schema changes using mig
 ## API Preview
 ### Swagger UI
 Overview of all available endpoints.
-<img src="https://github.com/Simon0824/reservation-system/blob/3df63f49116a072e1dadb8e8c49fe6e1aed48783/Screen1.png" width="700" height="500"/>
+
+<img src="https://github.com/Simon0824/reservation-system/blob/main/reservation-system/Assets/Screenshots/Screen1.png" width="700" height="500"/>
+
 
 
 ### User Login (POST)
 User authentication endpoint returning JWT token.
-<img src="https://github.com/Simon0824/reservation-system/blob/3df63f49116a072e1dadb8e8c49fe6e1aed48783/Screen2.png" width="700" height="500"/>
+
+<img src="https://github.com/Simon0824/reservation-system/blob/main/reservation-system/Assets/Screenshots/Screen2.png" width="700" height="500"/>
+
 
 
 ### Entering JWT Token for authorization
 Example of accessing secured endpoint using Bearer token.
-<img src="https://github.com/Simon0824/reservation-system/blob/3df63f49116a072e1dadb8e8c49fe6e1aed48783/Screen3.png" width="700" height="500"/>
+
+<img src="https://github.com/Simon0824/reservation-system/blob/main/reservation-system/Assets/Screenshots/Screen3.png" width="700" height="500"/>
+
 
 
 ### Create Reservation (POST)
 Example request for creating a reservation.
-<img src="https://github.com/Simon0824/reservation-system/blob/3df63f49116a072e1dadb8e8c49fe6e1aed48783/Screen4.png" width="700" height="500"/>
+
+<img src="https://github.com/Simon0824/reservation-system/blob/main/reservation-system/Assets/Screenshots/Screen4.png" width="700" height="500"/>
+
 
 
 ### Get All Users with Reservations (GET)
 Request for checking all created users and which dates are assigned to them.
-<img src="https://github.com/Simon0824/reservation-system/blob/3df63f49116a072e1dadb8e8c49fe6e1aed48783/Screen5.png" width="700" height="500"/>
+
+<img src="https://github.com/Simon0824/reservation-system/blob/main/reservation-system/Assets/Screenshots/Screen5.png" width="700" height="500"/>
+
 
 
 ## Features
@@ -50,14 +60,31 @@ Request for checking all created users and which dates are assigned to them.
 - Access protected endpoints using authorization
 - Swagger UI with JWT authentication support
 
+## Unit Tests (xUnit with NSubstitute mock)
+- Reservation tests with mocked database
+- User registration tests with check if user is already registered
+- Mocking SignInManager, UserManager, Token and User services
+- User login tests with password and email check
+- User login happy path testing
+
 ## How to run
 1. Clone the repository
+   ```bash
    git clone https://github.com/Simon0824/reservation-system
+   
 2. Add JWT secret to user-secrets:
-   - dotnet user-secrets set "CreatingToken:Token" "Your_Secret"
-   - dotnet user-secrets set "CreatingToken:Issuer" "Your_Issuer"
-   - dotnet user-secrets set "CreatingToken:Audience" "Your_Audience"
+   ```bash
+   dotnet user-secrets set "CreatingToken:Token" "Your_Secret"
+   dotnet user-secrets set "CreatingToken:Issuer" "Your_Issuer"
+   dotnet user-secrets set "CreatingToken:Audience" "Your_Audience"
+   
 3. Run the project:
+   ```bash
    dotnet run
+   
 4. Open Swagger UI:
    http://localhost:{port}/swagger/index.html
+   
+5. Run the unit tests:
+   ```bash
+   dotnet test
