@@ -20,7 +20,7 @@ Handles database access through a DbContext and manages schema changes using mig
 ### Swagger UI
 Overview of all available endpoints.
 
-<img src="https://github.com/Simon0824/reservation-system/blob/main/Screen1.png" width="700" height="500"/>
+<img src="https://github.com/Simon0824/reservation-system/blob/reservation-system/Assets/Screenshots/Screen1.png" width="700" height="500"/>
 
 
 
